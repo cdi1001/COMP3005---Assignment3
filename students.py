@@ -6,18 +6,20 @@ USER = "postgres"
 HOST = "localhost"
 PASSWORD = "student"
 
-# establishing a connection to the database
+# function for establishing a connection to the database
 def establish_connection():
     try:
+        # using psycopg's connect method to create a new database session and return a new connection instance
         connection = psycopg.connect(
             dbname=DB_NAME, user=USER, host=HOST, password=PASSWORD
         )
     except psycopg.OperationalError as e:
+        # handling any error that occurs while connecting to the database
         print(f"failed to connect to the database: {e}")
         exit(1)
     return connection
 
-# retrieving and displaying all records from the students table
+# function for retrieving and displaying all records from the students table
 def retrieve_all_students():
     try:
         with establish_connection() as connection:
@@ -27,10 +29,12 @@ def retrieve_all_students():
                 for row in rows:
                     print(row)
     except psycopg.DatabaseError as e:
+        # handling any error that occurs while executing the SQL command or fetching the rows
         print(f"error while accessing the database: {e}")
 
-# adding a new student record to the students table
+# function for adding a new student record to the students table
 def insert_new_student():
+    # getting the details of the new student from the user
     first_name = input("Enter the student's first name: ")
     last_name = input("Enter the student's last name: ")
     email = input("Enter the student's email: ")
@@ -63,8 +67,9 @@ def modify_student_email():
     except psycopg.DatabaseError as e:
         print(f"error while accessing the database: {e}")
 
-# deleting a student record
+# function for deleting a student record
 def remove_student():
+    # getting the id of the student to be deleted from the user
     student_id = input("Enter the student's id: ")
     try:
         with establish_connection() as connection:
@@ -77,27 +82,28 @@ def remove_student():
 
 # displaying the main menu and getting the user's choice
 def display_menu():
-    menu = [
-        {"option": "1", "message": "Retrieve all students", "action": retrieve_all_students},
-        {"option": "2", "message": "Insert a new student", "action": insert_new_student},
-        {"option": "3", "message": "Modify a student's email", "action": modify_student_email},
-        {"option": "4", "message": "Remove a student", "action": remove_student},
-    ]
+        menu = [
+            {"option": "1", "message": "Retrieve all students", "action": retrieve_all_students},
+            {"option": "2", "message": "Insert a new student", "action": insert_new_student},
+            {"option": "3", "message": "Modify a student's email", "action": modify_student_email},
+            {"option": "4", "message": "Remove a student", "action": remove_student},
+        ]
 
-    for item in menu:
-        print(f"{item['option']}. {item['message']}")
+        # iterating over each menu option and printing it
+        for item in menu:
+            print(f"{item['option']}. {item['message']}")
 
-    user_choice = input("Enter your choice: ")
-    print("\n")
+        user_choice = input("Enter your choice: ")
+        print("\n")
 
-    for item in menu:
-        if user_choice == item["option"]:
-            item["action"]()
-            break
-    else:
-        print("invalid choice")
+        # iterating over each menu option and checking if the user's choice matches the option number
+        for item in menu:
+            if user_choice == item["option"]:
+                item["action"]()
+                break
+        else:
+            print("invalid choice")
 
-# main function
 if __name__ == "__main__":
     while True:
         display_menu()
