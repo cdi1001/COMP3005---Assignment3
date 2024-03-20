@@ -83,10 +83,10 @@ def remove_student():
 # displaying the main menu and getting the user's choice
 def display_menu():
         menu = [
-            {"option": "1", "message": "Retrieve all students", "action": retrieve_all_students},
-            {"option": "2", "message": "Insert a new student", "action": insert_new_student},
-            {"option": "3", "message": "Modify a student's email", "action": modify_student_email},
-            {"option": "4", "message": "Remove a student", "action": remove_student},
+            {"option": "1", "message": "Retrieve and display all records from the students table", "action": retrieve_all_students},
+            {"option": "2", "message": "Insert a new student record into the students table", "action": insert_new_student},
+            {"option": "3", "message": " Update the email address for a student with the specified student_id", "action": modify_student_email},
+            {"option": "4", "message": " Delete the record of the student with the specified student_id", "action": remove_student},
         ]
 
         # iterating over each menu option and printing it
