@@ -3,6 +3,8 @@
 Submitted by: Charu Idnani
 Student Number: 101285266
 
+Demo: 
+
 ## How to run:
 - Open pgAdmin4 for PostgreSQL
 - Create a new database named a3.
