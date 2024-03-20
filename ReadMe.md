@@ -3,7 +3,7 @@
 Submitted by: Charu Idnani
 Student Number: 101285266
 
-Demo: 
+Demo: https://youtu.be/oW9ufPtR3Vc
 
 ## How to run:
 - Open pgAdmin4 for PostgreSQL
